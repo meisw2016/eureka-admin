@@ -14,12 +14,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+
 
 import org.bytedeco.javacv.CanvasFrame;
 import org.hyperic.sigar.CpuInfo;
@@ -35,6 +37,12 @@ import org.hyperic.sigar.Swap;
 import org.hyperic.sigar.Who;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.xbill.DNS.Cache;
+import org.xbill.DNS.Lookup;
+import org.xbill.DNS.Resolver;
+import org.xbill.DNS.SimpleResolver;
+import org.xbill.DNS.TextParseException;
+import org.xbill.DNS.Type;
 
 import com.meisw.systemChek.vo.CpuRateVo;
 import com.meisw.systemChek.vo.CpuVo;
@@ -431,4 +439,29 @@ public class SystemUtil {
 		frame.dispose();
 	}
 
+	public static List<String> getDNS(String host) {
+		List<String> list = new ArrayList<String>();
+		try {
+			Resolver resolver = new SimpleResolver("114.114.114.114");
+			Lookup lookup = new Lookup(host,Type.A);
+			lookup.setResolver(resolver);
+			Cache cache = new Cache();
+			lookup.setCache(cache);
+			lookup.run();
+			if(lookup.getResult()==Lookup.SUCCESSFUL) {
+				String[] results = cache.toString().split("\\n");
+				for(String result:results) {
+					System.out.println(result);
+					list.add(result);
+				}
+			}else {
+				System.out.println(lookup.getErrorString());
+			}
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (TextParseException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 }

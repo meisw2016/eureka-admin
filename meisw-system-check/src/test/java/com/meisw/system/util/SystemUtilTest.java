@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.util.List;
 
 import org.hyperic.sigar.FileSystem;
 import org.hyperic.sigar.FileSystemUsage;
@@ -116,6 +117,14 @@ public class SystemUtilTest {
 			System.out.println(b.toString());
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testDns() {
+		List<String> list = SystemUtil.getDNS("http://it.yusys.com.cn");
+		for(String result:list) {
+			System.out.println(result);
 		}
 	}
 }
