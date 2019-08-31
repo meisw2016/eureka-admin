@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../../static/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="./../static/js/echarts.js"></script>
+</head>
+<body>
+	<div id="echartsPie" style="width: 800px; height: 600px;"></div>
+	<script type="text/javascript">
+		var echartsPie = echarts.init(document.getElementById('echartsPie'));
+		$.ajax({
+			url:'/system/getMemory',
+			type:'GET',
+			dataType:'json',
+			success:function(data){
+				alert(data);
+			}
+		})
+		
+		/* $.post("user_linkByPhone.action", function(datas) {
+			console.log(datas);
+			var data = $.parseJSON(datas); //将传递过来的json字符串转化为对象
+			console.log(data);
+			var servicedata = [];
+			for (var i = 0; i < data.name.length; i++) {
+				var obj = new Object();
+				obj.name = data.name[i];
+				obj.value = data.data[i];
+				servicedata[i] = obj;
+			}
+			echartsPie.setOption({
+				title : {
+					text : '月内点击量数据',
+					subtext : '饼图',
+					x : 'center'
+				},
+				tooltip : {
+					trigger : 'item',
+					formatter : "{b} <br/>{c} : {d} %" //a 系列名称，b 数据项名称，c 数值，d 百分比
+				},
+				legend : {
+					orient : 'vertical',
+					x : 'left',
+					data : data.name
+				},
+				toolbox : {
+					show : true,
+					feature : {
+						mark : {
+							show : true
+						},
+						dataView : {
+							show : true,
+							readOnly : false
+						},
+						magicType : {
+							show : true,
+							type : [ 'pie', 'funnel' ],
+							option : {
+								funnel : {
+									x : '25%',
+									width : '50%',
+									funnelAlign : 'left',
+									max : 1548
+								}
+							}
+						},
+						restore : {
+							show : true
+						},
+						saveAsImage : {
+							show : true
+						}
+					}
+				},
+				calculable : true,
+				series : [ {
+					name : '点击量',
+					type : 'pie',
+					radius : '55%',//饼图的半径大小  
+					center : [ '50%', '60%' ],//饼图的位置  
+					data : servicedata
+				} ]
+			})
+		}) */
+	</script>
+</body>
+</html>

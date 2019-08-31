@@ -4,5 +4,10 @@ server:
 
 #thymelea模板配置
 spring:
+  devtools:
+    restart:
+      enabled: false
+  thymeleaf:
+    cache: false
   mvc:
    static-path-pattern: /static/**  
