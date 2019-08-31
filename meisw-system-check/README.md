@@ -1,4 +1,2 @@
-# multi-datasource
-SpringBoot + JPA 多数据源配置
-
-1231231312
+1.将lib下的sigar-amd64-winnt.dll放到jdk的bin目录下
+2.你害的我好苦啊！
