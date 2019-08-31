@@ -1,0 +1,8 @@
+server:
+  port: 9000
+
+
+#thymelea模板配置
+spring:
+  mvc:
+   static-path-pattern: /static/**  
