@@ -502,6 +502,7 @@ public class SystemUtil {
 	
 	@Test
 	public void test3() {
-//		OpenExplorerTest4.browse("")
+		String tmpDir = System.getProperty("java.io.tmpdir");
+		System.out.println(tmpDir);
 	}
 }

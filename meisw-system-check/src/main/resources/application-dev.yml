@@ -11,3 +11,7 @@ spring:
     cache: false
   mvc:
    static-path-pattern: /static/**  
+  cache:
+    type: ehcache
+    ehcache:
+      config: classpath:/ehcache.xml
