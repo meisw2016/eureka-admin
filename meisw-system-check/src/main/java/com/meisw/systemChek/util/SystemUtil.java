@@ -1,6 +1,7 @@
 package com.meisw.systemChek.util;
 
 import java.awt.AWTException;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.URI;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -21,7 +23,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-
 
 import org.bytedeco.javacv.CanvasFrame;
 import org.hyperic.sigar.CpuInfo;
@@ -35,6 +36,7 @@ import org.hyperic.sigar.Sigar;
 import org.hyperic.sigar.SigarException;
 import org.hyperic.sigar.Swap;
 import org.hyperic.sigar.Who;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xbill.DNS.Cache;
@@ -463,5 +465,43 @@ public class SystemUtil {
 			e.printStackTrace();
 		}
 		return list;
+	}
+	
+	@Test
+	public  void getBrowerVersion() {
+		try {
+			Runtime.getRuntime().exec("cmd /c start iexplore http://www.baidu.com" );
+			Runtime.getRuntime().exec("rundll32url.dll,FileProtocolHandler http://www.baidu.com");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void test1() {
+		URI uri = java.net.URI.create("www.baidu.com");
+		Desktop dp = java.awt.Desktop.getDesktop();
+		if(dp.isSupported(java.awt.Desktop.Action.BROWSE)) {
+			try {
+				dp.browse(uri);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	@Test
+	public void test2() {
+		ProcessBuilder proc = new ProcessBuilder("C:\\Program Files\\Internet Explorer\\iexplore.exe","http://localhost:9000/system/getBrowser");
+		try {
+			proc.start();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void test3() {
+//		OpenExplorerTest4.browse("")
 	}
 }
