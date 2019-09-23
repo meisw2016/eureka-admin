@@ -1,0 +1,78 @@
+1.查看序列
+select * from user_sequences;
+select * from user_sequences where sequence_name like '%%';
+
+修改序列自增值
+alter sequence 序列名称 increment by 1
+select 序列名称.next from dual;
+新增序列
+create sequence 序列名称 minvalue 1 maxvalue 999999999999999999
+start with 1 increment by 1 nocache;
+删除序列
+drop sequence 序列名称
+
+新增id字段并设置为主键
+alter table 表名 add constraint primary key(列名)
+
+
+----------------------------------------- 添加ip到hosts中去
+echo 128.192.154.55 T104PC03VM24>>C:\Windows\System32\drivers\etc\hosts
+echo 128.192.154.105 mon.yun.ccb.com>>C:\Windowns\System32\drivers\etc\hosts
+
+
+
+优云测试环境地址：
+128.96.104.63/portal
+username:admin
+password:Admin@123
+
+
+1.使用set方法注入，非静态setter方法注入静态变量，如：
+@Component
+public class GlobalValue{
+	public static String DATABASE;
+	
+	@Value("{${mongodb.db}}")
+	public void setDatabase(String db){
+		DATABASE = db;
+	}
+}
+2.使用@PostConstruct方式实现
+@PostConstruct会在构造方法之后执行，其给static变量的原理和set方法差不多，都是调用非静态方法给静态变量赋值
+
+
+给某个目录赋权限
+sudo chmod -R 777 文件目录
+
+打tar.gz包
+tar -zcvf /home/aaa.tar.gz /aaa
+
+zip压缩
+zip -r ./aaa.zip ./*
+解压
+unzip aaa.zip
+
+
+ThreadPoolExecutor
+第一个参数：设置核心线程数，默认情况下核心线程会一直存活
+第二个参数：设置最大线程数。决定线程池最多可以创建的多少线程
+第三个参数和第四个参数：设置线程空闲事件和空闲时间的单位
+第五个参数：设置缓冲队列，Array BlockingQueue是一个有界队列。就是指队列有最大容量限制
+LinkedBlockingQueue是无界队列，就是队列不限制容量s
+
+Eclipse远程连接服务器调试代码（Springboot项目）
+java -Xdebug -Xrunjdwp:server=y,transport=dl_socket,address=8000,suspend=n -jar 项目包
+
+后台启动方式：
+nohup java -jar -Dspring.config.location=application.properties -Dserver.port=8080 dataMq.jar &
+
+使用mvn deploy命令上传jar包到nexus私服
+1.cmd命令进入jar包所在路径
+2.mvn deploy:deploy-file -DgroupId xxx -Dartifact xxx -Dversion xxx
+
+maven打包跳过测试
+mvn install -Dmaven.test.skip=true
+
+Eclipse中配置jdk的maven参数
+-Dmaven.multiModuleProjectDirectory=E:/install/apache-maven-3.5.2
+
